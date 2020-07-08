@@ -52,7 +52,7 @@ for candidate in candidates:
 	percent_votes = "{}% ".format(round(percent_votes,3))
 	print(f'{candidate}: {percent_votes} ({candidates[candidate]}')
 
-print("~"*30)
+print('~'*30)
 print('Election Winner:' +str(winner))
 print('~'*30)	
 
@@ -61,24 +61,23 @@ print('~'*30)
 outputplace = os.path.join('Analysis', 'Election_Results.txt')
 
 #open file with write
-with open(outputplace, 'w', newline= '') as datafile:
+with open(outputplace, 'w', newline='') as datafile:
 	txtwriter = csv.writer(datafile, delimiter= ' ')
 
 	txtwriter.writerow(['Election Results'])
 	txtwriter.writerow(['~'*30])
-	txtwriter.writerow(['Total Votes:', +str(total_votes)])
+	txtwriter.writerow(['Total Votes:', (total_votes)])
 	txtwriter.writerow(['~'*30])
 
-for candidate in candidates:
+	for candidate in candidates:
+		percent_votes = (candidates[candidate])/total_votes*100
+		percent_votes = "{}%".format(round(percent_votes,3))
+		txtwriter.writerow([f'{candidate}: {percent_votes} ({candidates[candidate]})'])
 
-    percent_votes = (candidates[candidate])/total_votes *100
-    percent_votes = "{}% ".format(round(percent_votes, 3))
-    txtwriter.writerow([f'{candidate}: {percent_votes} ({candidates[candidate]})'])
 
-
-    txtwriter.writerow(['-'*30])
-    txtwriter.writerow(['Winner: ', winner])
-    txtwriter.writerow(['-'*30])
+	txtwriter.writerow(['~'*30])
+	txtwriter.writerow(['Election Winner:',winner])
+	txtwriter.writerow(['~'*30])
 
 
 
